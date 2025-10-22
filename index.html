@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maharashtra Tourism - Discover & Explore</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa; /* Light background */
+            color: #333;
+        }
+        .header-bg {
+            background: linear-gradient(90deg, #004aad, #007bff);
+            color: white;
+            padding: 40px 20px;
+        }
+        .navbar-custom {
+            background-color: #007bff;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .destination-card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color: #004aad;
+            color: white;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-bg text-center">
+        <h1>Maharashtra Tourism 🏰🌴</h1>
+        <p class="lead">Discover the beauty, culture, and vibrant destinations of Maharashtra.</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Maha Tour</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#places">Tourist Places</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hotels">Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        
+        <section id="places" class="mb-5">
+            <h2 class="text-center mb-4">Explore Maharashtra's Major Destinations</h2>
+            
+            <div class="d-flex justify-content-center mb-4 flex-wrap">
+                <button class="btn btn-outline-primary m-2" onclick="filterPlaces('All')">All Places</button>
+                <button class="btn btn-outline-primary m-2" onclick="filterPlaces('Historical')">Historical</button>
+                <button class="btn btn-outline-primary m-2" onclick="filterPlaces('Nature')">Nature & Hill Stations</button>
+                <button class="btn btn-outline-primary m-2" onclick="filterPlaces('Religious')">Religious</button>
+            </div>
+
+            <div id="destinations-container" class="row">
+                </div>
+        </section>
+        
+        <hr>
+
+        <section id="hotels" class="mb-5">
+            <h2 class="text-center mb-4">Popular Accommodation</h2>
+            <p class="text-center mb-4">Find comfortable and affordable hotels across major cities and tourist spots.</p>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card p-3">
+                        <h5>Taj Mahal Palace, Mumbai</h5>
+                        <p class="mb-0 text-muted">Luxury | Colaba, Mumbai</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card p-3">
+                        <h5>The Oberoi, Pune</h5>
+                        <p class="mb-0 text-muted">Premium | Koregaon Park, Pune</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card p-3">
+                        <h5>Blue Hills Resort, Lonavala</h5>
+                        <p class="mb-0 text-muted">Resort | Scenic Views</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card p-3">
+                        <h5>Surya Residency, Nashik</h5>
+                        <p class="mb-0 text-muted">Budget-Friendly | Nashik City</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contact">
+            <h2 class="text-center mb-4">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contactForm" class="p-4 border rounded shadow-sm bg-white">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="query" class="form-label">Your Query / Feedback</label>
+                            <textarea class="form-control" id="query" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        <p id="form-message" class="mt-3 text-center" style="display:none;"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1">Email: info@maharashtratourism.in | Phone: +91 74980 82253</p>
+            <p>© 2025 Maharashtra Tourism. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">Destination Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-body-content">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. DYNAMIC DATA SOURCE (Simulated Database)
+        const touristPlacesData = [
+            {
+                id: 1,
+                name: "Ajanta & Ellora Caves",
+                shortDesc: "UNESCO World Heritage Site with stunning rock-cut caves near Aurangabad.",
+                category: "Historical",
+                image: "Ajanta & Ellora Caves .jpg",
+                details: {
+                    cost: { indian: "₹60", foreign: "$10", camera: "₹25" },
+                    bestTime: "October - March",
+                    description: "A monumental collection of rock-cut Buddhist, Hindu, and Jain cave temples built between the 2nd century BCE and 10th century CE. They showcase magnificent frescoes and sculptures.",
+                    mapLink: "https://maps.app.goo.gl/r6R4Yc9tS6vPZ8pW7" // Example map link
+                }
+            },
+            {
+                id: 2,
+                name: "Mahabaleshwar",
+                shortDesc: "A popular hill station known for its scenic views, waterfalls, and strawberry farms.",
+                category: "Nature",
+                image: "Mahabaleshwar.jpeg",
+                details: {
+                    cost: { entry: "Free (Points)", parking: "₹50-100" },
+                    bestTime: "October - June",
+                    description: "Located in the Western Ghats, this town offers stunning panoramic views from points like Arthur's Seat. It's also the source of the Krishna River.",
+                    mapLink: "https://maps.app.goo.gl/3f8H57oNqWvPZ8pW7"
+                }
+            },
+            {
+                id: 3,
+                name: "Shirdi",
+                shortDesc: "The holy town of Sai Baba, a major pilgrimage center attracting millions of devotees.",
+                category: "Religious",
+                image: "shirdi.jpeg",
+                details: {
+                    cost: { templeEntry: "Free", specialDarshan: "₹200 (optional)" },
+                    bestTime: "Throughout the year",
+                    description: "Home to the Samadhi Mandir of Shri Sai Baba. The town is filled with a spiritual atmosphere and facilities for pilgrims.",
+                    mapLink: "https://maps.app.goo.gl/4g5Yc9tS6vPZ8pW7"
+                }
+            },
+             {
+                id: 4,
+                name: "Tadoba National Park",
+                shortDesc: "Maharashtra's largest and oldest National Park, famous for its Tiger Reserve.",
+                category: "Nature",
+                image: "Tadoba.jpeg",
+                details: {
+                    cost: { safari: "₹2000 - ₹5000 (per jeep)", guide: "₹500" },
+                    bestTime: "October - June (Peak: March-May)",
+                    description: "A paradise for wildlife lovers, offering excellent opportunities for tiger sightings, alongside leopards, sloth bears, and various bird species. Safari booking is essential.",
+                    mapLink: "https://maps.app.goo.gl/g6J4Yc9tS6vPZ8pW7"
+                }
+            }
+        ];
+
+        // 2. FUNCTION TO RENDER CARDS
+        const container = document.getElementById('destinations-container');
+
+        function renderCards(data) {
+            container.innerHTML = ''; // Clear existing cards
+            if (data.length === 0) {
+                container.innerHTML = '<p class="text-center w-100">No destinations found for this filter.</p>';
+                return;
+            }
+
+            data.forEach(place => {
+                const cardHtml = `
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card destination-card h-100">
+                            <img src="${place.image}" class="card-img-top" alt="${place.name}">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${place.name}</h5>
+                                <p class="card-text">${place.shortDesc}</p>
+                                <div class="mt-auto"> <span class="badge bg-secondary mb-2">${place.category}</span>
+                                    <button class="btn btn-info btn-sm w-100" onclick="showDetailsModal(${place.id})">
+                                        View Details & Cost
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // 3. FUNCTION FOR FILTERING
+        function filterPlaces(category) {
+            let filteredData = [];
+            if (category === 'All') {
+                filteredData = touristPlacesData;
+            } else {
+                filteredData = touristPlacesData.filter(place => place.category === category);
+            }
+            renderCards(filteredData);
+        }
+
+        // 4. FUNCTION TO SHOW INTERACTIVE MODAL (Detail View)
+        function showDetailsModal(id) {
+            const place = touristPlacesData.find(p => p.id === id);
+            
+            if (!place) return;
+
+            const modalTitle = document.getElementById('detailsModalLabel');
+            const modalBody = document.getElementById('modal-body-content');
+            
+            modalTitle.textContent = place.name;
+
+            // Generate Cost Breakdown HTML
+            let costHtml = '<h6>💰 Cost Breakdown:</h6><ul>';
+            for (const key in place.details.cost) {
+                costHtml += `<li><strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> ${place.details.cost[key]}</li>`;
+            }
+            costHtml += '</ul>';
+
+            // Generate Modal Content HTML
+            modalBody.innerHTML = `
+                <img src="${place.image}" class="img-fluid rounded mb-3" alt="${place.name}">
+                <p><strong>Category:</strong> ${place.category}</p>
+                <p><strong>Best Time to Visit:</strong> <span class="badge bg-success">${place.details.bestTime}</span></p>
+                <p>${place.details.description}</p>
+                <hr>
+                ${costHtml}
+                <hr>
+                <h6>🗺️ Location:</h6>
+                <a href="${place.details.mapLink}" target="_blank" class="btn btn-warning">View on Google Maps</a>
+            `;
+
+            // Display the modal using Bootstrap's JS
+            const detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            detailsModal.show();
+        }
+
+        // 5. CONTACT FORM SUBMISSION HANDLER
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the form from submitting normally
+            
+            const messageElement = document.getElementById('form-message');
+            messageElement.style.display = 'block';
+            messageElement.className = 'mt-3 text-center text-success';
+            messageElement.textContent = "Thank you for your message! We'll get back to you shortly.";
+            
+            // Optionally clear the form
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        });
+
+        // Initial Load: Render all cards on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards(touristPlacesData);
+        });
+    </script>
+</body>
+</html>
